@@ -9,15 +9,26 @@ function Validator(options) {
     
     if (formElement) {
 
+
+        
         //  Ngăn submit form
         formElement.onsubmit = function(event) {
             event.preventDefault();
+            var isFormValid = true;
             options.rules.forEach(function (rule){
-            var inputElement = formElement.querySelector(rule.selector);
-            validate(inputElement, rule);
+                var inputElement = formElement.querySelector(rule.selector);
+                var isValid = validate(inputElement, rule);       
+                if (!isValid) {
+                    isFormValid = false;
+                }
+                
+
             });
 
-
+            if (isFormValid) {
+                console.log('khong co loi')
+            } else {console.log('co loi')}
+            
         }
 
         // Lặp qua mỗi rule và sử lý (sử dụng onblur, oninput)
@@ -57,14 +68,16 @@ function Validator(options) {
             if (errorMessage) break;
         }
 
-              if (errorMessage) {
-                  errorElement.textContent = errorMessage;
-                  inputElement.parentElement.classList.add('invalid');
-              } else {
-                  errorElement.textContent = '';
-                  inputElement.parentElement.classList.remove('invalid');                  
-              }
+        if (errorMessage) {
+            errorElement.textContent = errorMessage;
+            inputElement.parentElement.classList.add('invalid');
+        } else {
+            errorElement.textContent = '';
+            inputElement.parentElement.classList.remove('invalid');                  
+        }
+        return !errorMessage;
     }
+    
 };
 
 
