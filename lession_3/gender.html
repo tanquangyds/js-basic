@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Average Test Scores</title>
+        <script>
+            var entry; var average;
+            var total = 0;
+            
+            //nhập giới tính
+            var gender = prompt("Nhập giới tính của bạn");
+            gender = gender.toLocaleLowerCase().trim();
+            var message;
+
+            switch (gender) {
+                case 'nam':
+                    message = 'Mình là nữ, chúng ta kết bạn nhé';
+                    break;
+                case 'nữ':
+                    message = 'Mình là nam, chúng ta kết bạn nhé';
+                    break;
+                case 'les':
+                    message = 'Mình cũng là les, chúng ta kết bạn nhé';
+                    break;
+                case 'gay':
+                    message = 'Mình cũng là gay, chúng ta kết bạn nhé';
+                    break;
+                case 'song tính':
+                    message = 'Chào bạn, chúng ta kết bạn nhé';
+                    break;
+                case 'vô tính':
+                    message = 'Chào bạn, chúng ta kết bạn nhé';
+                    break;  
+                default:
+                    message = 'bạn không phải là con người???'
+            }
+
+            alert(message)
+            
+        </script>
+        
+</head>
+<body>
+</body>
+</html>
