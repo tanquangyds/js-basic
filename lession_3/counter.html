@@ -7,8 +7,9 @@
 </head>
 <body>
     <script>
-        var arrayNumber = [2,4,5,3,7,7,8,4,15,18,23, 25];
+        var arrayNumber= [-33, -23, -16,-10,-4, 0, 6,  9, 15, 17, 23, 35, 37];
         var arrayLength = arrayNumber.length;
+        // Tìm số lớn nhất, nhỏ nhất
         var maxNumber = arrayNumber[0];
         var minNumber = arrayNumber[0];
         for (var i = 0; i < arrayLength ; i++) {
@@ -19,13 +20,79 @@
             if (arrayNumber[i] < minNumber){
             maxNumber = arrayNumber[i];}
         };
-        document.write('Số lớn nhất là: ' + maxNumber+  '<br>');
-        document.write('Số nhỏ nhất là: ' + minNumber);
-        var lengthOfOddNumber = 6;
-        for (var i = 0; i < arrayNumber.length ; i++) {
-            if (arrayNumber[i] % 2 === 0) {
-
+        document.write('Số lớn nhất là: ' + maxNumber+ ';' +'<br>');
+        document.write('Số nhỏ nhất là: ' + minNumber + ';' + '<br>');
+        
+        // Số âm
+        var negativeNum = [];
+        for (var i = 0; i < arrayNumber.length; i++) {
+            if (arrayNumber[i] < 0) {
+                negativeNum.push(arrayNumber[i]);
             }
+        };
+        document.write('Các số âm trong dãy là: ');
+        for (var i = 0; i < negativeNum.length; i++) {
+            document.write(negativeNum[i] + '; ')
+        };
+        // Số nguyên tố
+        // checked function
+        function isPrimeNum(num) {
+            var result = true;
+            if (num <= 1) {
+                result = false;
+            } if (num === 2) {
+                result = true;
+            } else {
+                for (var i = 2; i < num / 2; i++ ) {
+                    if (num % i === 0) {
+                        result = false
+                    }
+                }
+            }
+            return result;
+        }
+        // sort prime number array
+
+        var primeNum = [];
+        for (var i = 0; i < arrayNumber.length; i++) {
+            if (isPrimeNum(arrayNumber[i]) === true) {
+                primeNum.push(arrayNumber[i]);
+            }
+        };
+        document.write('<br>' + 'Các số nguyên tố trong dãy là: ');
+        for (var i = 0; i < primeNum.length; i++) {
+            document.write(primeNum[i] + '; ')
+        };
+
+        // sort number
+
+        newArray = arrayNumber.sort(function(a,b){
+            return a-b;
+        })
+        console.log(newArray);
+
+        // Số chẵn, số lẻ
+        var evenNumber = [];
+        var oddNumber = [];
+        for (var i = 0; i < newArray.length; i++) {
+            if (newArray[i] % 2 === 0) {
+                evenNumber.push(newArray[i]);
+            } else {oddNumber.push(newArray[i])}
+        };
+        document.write('<br>' + 'Các số chẵn trong dãy là: ');
+        for (var i = 0; i < evenNumber.length; i++) {
+            document.write(evenNumber[i] + '; ')
+        };
+
+        // 5 số chẵn nhỏ nhất, 5 số lẻ lớn nhất
+
+        document.write('<br>' + '5 số chẵn nhỏ nhất của dãy là: ');
+        for (var x = 0; x < 5; x++) {
+            document.write(evenNumber[x] + '; ')
+        };
+        document.write( '<br>' + '5 số lẻ lớn nhất của dãy là: ')
+        for (var x = oddNumber.length -5; x < oddNumber.length; x++) {
+            document.write(oddNumber[x] + '; ')
         }
     </script>
 </body>
