@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <h1>Calculate Miles Per Gallone</h1>
+        <label for="miles">Miles Drivers</label>
+        <input type="text" id="miles" /> <br />
+        <label for="gallons">Gallone of Gas used</label>
+        <input type="text" id="gallons" /> <br />
+        <label for="mpg">Miles For Gallone</label>
+        <input type="text" id="mpg" disabled /><br />
+        <label>abc</label>
+        <input type="button" id="calculate" value="Calculate MPG" /> <br />
+    </form>
+    <script>
+        var $ = function(id) {
+            return document.getElementById(id);
+        };
+        var calculateMpg = function(miles, gallons) {
+            var mpg = miles / gallons ;
+            mpg = mpg.toFixed(1);
+            return mpg;
+        };
+        var processEntries = function () {
+            var miles = parseFloat($('miles').value);
+            var gallons = parseFloat($('gallons').value);
+            if (isNaN(miles) || isNaN(gallons)) {
+                alert('Both entries must be numeric');
+            } else {
+                $('mpg').value = calculateMpg(miles, gallons);
+            }
+        };
+        window.onload = function () {
+            $('calculate').onclick = processEntries;
+            $('miles').focus();
+        }
+        if (mpg < 30) {
+            alert('xe chậm')
+        } if (mpg < 60) {
+            alert('')
+        }
+    </script>
+</body>
+</html>

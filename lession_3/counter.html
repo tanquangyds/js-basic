@@ -34,6 +34,27 @@
         for (var i = 0; i < negativeNum.length; i++) {
             document.write(negativeNum[i] + '; ')
         };
+        // Số dương
+        var positiveNum = [];   
+        for (var i = 0; i < arrayNumber.length; i++) {
+            if (arrayNumber[i] > 0) {
+                positiveNum.push(arrayNumber[i]);
+            }
+        };
+        // Tìm cặp số đối
+
+        var oppNum = [];
+        for (var x = 0; x < positiveNum.length; x++) {
+            for (var y = 0; y < negativeNum.length; y++) {
+                if (positiveNum[x] + negativeNum[y] === 0){
+                    oppNum.push(positiveNum[x]);
+                    oppNum.push(negativeNum[y]);
+
+                }
+            }
+        }
+
+        console.log(oppNum);
         // Số nguyên tố
         // checked function
         function isPrimeNum(num) {
@@ -59,18 +80,17 @@
                 primeNum.push(arrayNumber[i]);
             }
         };
-        document.write('<br>' + 'Các số nguyên tố trong dãy là: ');
-        for (var i = 0; i < primeNum.length; i++) {
-            document.write(primeNum[i] + '; ')
+        document.write('<br>' + 'Cặp số đối trong dãy là: ');
+        for (var i = 0; i < oppNum.length; i++) {
+            document.write(oppNum[i] + '; ')
         };
+
 
         // sort number
 
         newArray = arrayNumber.sort(function(a,b){
             return a-b;
-        })
-        console.log(newArray);
-
+        });
         // Số chẵn, số lẻ
         var evenNumber = [];
         var oddNumber = [];
@@ -90,6 +110,7 @@
         for (var x = 0; x < 5; x++) {
             document.write(evenNumber[x] + '; ')
         };
+
         document.write( '<br>' + '5 số lẻ lớn nhất của dãy là: ')
         for (var x = oddNumber.length -5; x < oddNumber.length; x++) {
             document.write(oddNumber[x] + '; ')

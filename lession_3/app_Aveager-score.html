@@ -8,43 +8,52 @@
             var entry; var average;
             var total = 0;
             
-            //get 3 scores from user and add them together
-            entry = prompt("Nhập điểm toán");
-            entry = parseInt(entry); 
-            var score1 = entry; 
-            total = total + score1;
+            function calculate(name) {
+                entry = prompt('Nhập điểm môn ' + name + ':');
+                entry = parseInt(entry); 
+                return total + entry;
+            }
+            var subject = ['toán', 'lý', 'hóa']
+            for (var i = 0; i < 3; i++) {
+                total = calculate(subject[i])
+            }
+
+
+            average = total / 3;
+
+            console.log(average);
+            // //get 3 scores from user and add them together
+            // entry = prompt("Nhập điểm toán");
+            // entry = parseInt(entry); 
+            // var score1 = entry; 
+            // total = total + score1;
             
-            entry = prompt("Nhập điểm Lý"); entry = parseInt(entry);
-            var score2 = entry; total = total + score2;
+            // entry = prompt("Nhập điểm Lý"); entry = parseInt(entry);
+            // var score2 = entry; total = total + score2;
             
-            entry = prompt("Nhập điểm hóa"); entry = parseInt(entry);
-            var score3 = entry; 
-            total = total + score3;
+            // entry = prompt("Nhập điểm hóa"); entry = parseInt(entry);
+            // var score3 = entry; 
+            // total = total + score3;
             
-            //calculate the average
-            average = parseInt(total/3);
-            // message
-            var message;
-            if ( average < 50) {
-                message = 'Bạn đã rớt!'
-            } if (average < 65) {
-                message = 'Bạn đã đậu nhưng cần cố gắng hơn!'
-            } if (average < 80) {
-                message = 'Bạn đã đậu!'
-            } else {
-                message = 'Chúc mừng bạn, bạn đã đậu với số điểm cao!'
-            };
+            // //calculate the average
+            // average = parseInt(total/3);
+            // // message
+            // var message;
+            // if ( average < 50) {
+            //     message = 'Bạn đã rớt!'
+            // } if (average < 65) {
+            //     message = 'Bạn đã đậu nhưng cần cố gắng hơn!'
+            // } if (average < 80) {
+            //     message = 'Bạn đã đậu!'
+            // } else {
+            //     message = 'Chúc mừng bạn, bạn đã đậu với số điểm cao!'
+            // };
         </script>
         
 </head>
 <body>
     <script>
-document.write("<h1>Kết quả</h1>");
-document.write("Điểm toán = " + score1 + "<br>" +
-"Điểm lý = " + score2 + "<br>" +
-"Điểm hóa = " + score3 + "<br><br>" +
-"Điểm trung bình = " + average + "<br><br>");
-document.write('<h4>' + message + '</h4>');
+document.write('Điểm trung mình của bạn là: ' + average + '<br>');
 </script>
 Cảm ơn bạn đã sử dụng chương trình!
 
