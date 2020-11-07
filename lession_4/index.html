@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 200px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <form>
@@ -14,13 +21,15 @@
         <input type="text" id="gallons" /> <br />
         <label for="mpg">Miles For Gallone</label>
         <input type="text" id="mpg" disabled /><br />
-        <label>abc</label>
+        <label></label>
         <input type="button" id="calculate" value="Calculate MPG" /> <br />
     </form>
+    <div id="result"></div>
     <script>
         var $ = function(id) {
             return document.getElementById(id);
         };
+        var mpg;
         var calculateMpg = function(miles, gallons) {
             var mpg = miles / gallons ;
             mpg = mpg.toFixed(1);
@@ -31,19 +40,36 @@
             var gallons = parseFloat($('gallons').value);
             if (isNaN(miles) || isNaN(gallons)) {
                 alert('Both entries must be numeric');
+            } if (miles <= 0 || gallons <= 0) {
+                alert('Entries must be over zero');
             } else {
                 $('mpg').value = calculateMpg(miles, gallons);
+                return mpg = calculateMpg(miles, gallons);
             }
         };
+        
+        function result(mpg) {
+            var message;
+            if (mpg < 30) {
+            message = 'slow';
+            } if (mpg < 60) {
+            message = 'nomal';
+            } if (mpg < 80) {
+                message = 'fast'
+            } else {
+                message = 'legend';
+            }
+            $('result').innerHTML= '<h1>' + message + '</h1>';
+        }
+        active = function () {
+            processEntries();
+            result(mpg);
+        }
         window.onload = function () {
-            $('calculate').onclick = processEntries;
+            $('calculate').onclick = active;
             $('miles').focus();
-        }
-        if (mpg < 30) {
-            alert('xe chậm')
-        } if (mpg < 60) {
-            alert('  ')
-        }
+        };
+        
     </script>
 </body>
 </html>

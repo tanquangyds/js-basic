@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=mai, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .open {
+            display: block;
+        }
+        .minus {
+            color: blue;
+        }
+        .close {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <main id="faqs">
+        <h1>JavaScript FAQs</h1>
+        <h2><a href="#">What is JavaScript</a></h2>
+        <div class="close">
+            <p>JavaScript is JavaScript is JavaScript is JavaScript is JavaScript is JavaScript is </p>
+        </div>
+        <h2><a href="#">What is JQuery</a></h2>
+        <div class="close">
+            <p>JavaScript is JavaScript is JavaScript is JavaScript is JavaScript is JavaScript is </p>
+        </div>
+        <h2><a href="#">Why JQuery becoming to popular?</a></h2>
+        <div class="close">
+            <p>Three reasons</p>
+            <ul>
+                <li>It's free</li>
+                <li>It lets you get more done less time</li>
+                <li>All of its function are cross-browser compatible</li>
+            </ul>
+        </div>
+    </main>
+    <script>
+        'use strict'
+        var $ = function (id) {
+            return document.getElementById(id);
+        };
+        var toggle = function() {
+            var h2 = this;
+            var div = h2.nextElementSibling;
+            
+            if (h2.hasAttribute('class')) {
+                h2.removeAttribute('class');
+            } else {
+                h2.setAttribute('class', 'minus');
+            }
+            if (div.getAttribute('class') === 'close') {
+                div.removeAttribute('class');
+                div.setAttribute('class', 'open');
+            } else {
+                div.removeAttribute('class');
+                div.setAttribute('class', 'close');
+            }
+        }
+        window.onload = function () {
+            var fags = $('faqs');
+            var h2Elements = faqs.getElementsByTagName('h2');
+            for (var i = 0; i < h2Elements.length; i++) {
+                h2Elements[i].onclick = toggle;
+            }
+            h2Elements[0].firstChild.focus();
+        }
+    </script>
+</body>
+</html>
