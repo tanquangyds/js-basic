@@ -1,0 +1,10 @@
+/*  base class */
+.open {
+  display: block;
+}
+.minus {
+  color: blue;
+}
+.close {
+  display: none;
+}

@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+    </style>
 </head>
 <body>
     <h1>Register for an Account</h1>
@@ -14,13 +20,13 @@
         <label for="phone">Mobile Phone</label>
             <input type="text" name="phone" id="phone">
             <span>*</span> <br>
-        <input type="button" value="register" id="register">
+        <input type="button" value="register" id="register" class="button">
         <input type="button" value="reset_form" id="reset_form">
     </form>
     <script>
         'use strick';
         var $ = function(id) {
-            return getElementById(id);
+            return document.getElementById(id);
         };
         var processEntries = function () {
             var isValid = true;
