@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container { margin: 0 auto;
+            width: 600px;
+            border: 2px solid blue;
+            padding: 20px;
+        }
+        .title {
+            color: blue;
+            margin: 0;
+        }
+        fieldset { 
+            margin-bottom: 20px;
+        }
+        ul { margin: 0;}
+        input { display: inline-block;
+        margin-bottom: 10px;}
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <h1 class= "title">Let's Play PIG</h1>
+            <fieldset>
+                <legend>Rule</legend>
+                <ul>
+                    <li>First play to 100 wins</li>
+                    <li>Players take turns rolling the die</li>
+                    <li>Turn ends when player rolls a 1 or chooses to hold</li>
+                    <li>If player roll a 1, they lose all points earned during the turn.</li>
+                    <li>If player hold, points earned during  the turn added to their total</li>
+                </ul>
+            </fieldset>
+            <label for="player1">Player 1</label>
+                <input type="text" id="player1">
+            <label for="score1">Score</label>
+                <input type="text" id="score1" value="0" disabled> <br>
+            <label for="player2">Player 2</label>
+                <input type="text" id="player2">
+            <label for="score2">Score</label>
+                <input type="text" id="score2" value="0" disabled>
+            <input type="button" id="new_game" value="New Game"></input> <br>
+
+            <section id="turn">
+                <p><span id="current">&nbsp;</span>'s turn</p>
+                <input type="button" id="roll" value="Roll">
+                <input type="button" id="hold" value="Hold">
+                <label for="die">Die</label>
+                    <input type="text" id="die" disabled>
+                <label for="total">Total</label>
+                    <input type="text" id="total" disabled>
+            </section>
+        </div>
+    </main>
+    <script
+        src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous">
+    </script>
+    <script>
+        // created  function
+        $(document).ready(function() {
+            var getRandomNumber = function(max) {
+                var random;
+                if (!isNaN(max)) {
+                    random = Math.random();
+                    random = Math.floor(random * max);
+                    random = random + 1;
+                }
+                return random;
+            };
+            var changePlayers = function () {
+                if ( $('#current').text() === $("#player1").val() ) {
+                    $("#current").text( $ ("#player2").val() );
+                } else {
+                    $("#current").text( $("#player1").val() );
+                }
+                $("#die").val("0");
+                $("#total").val("0");
+                $("#roll").focus();
+            };
+
+            $("#new_game").click( function() {
+                $("#score1").val("0");
+                $("#score2").val("0");
+
+                if ( $ ("#player1").val() === "" || $ ("#player1").val() === "") {
+                    $("#turn").removeClass("open");
+                    alert( "Please enter your player name");
+                } else {
+                    $("#turn").addClass("open");
+                    changePlayers();
+                }
+            })
+            $("#roll").click(function() {
+                var total = parseInt($("#total").val());
+                var die = getRandomNumber(6);
+                if (die === 1) {
+                    total = 0;
+                    changePlayers();
+                } else {total = total + die;}
+
+                $("#die").val(die);
+                $("#total").val(total);
+            });
+            $("#hold").click(function() {
+                var score;
+                var total = parseInt($("#total").val());
+                if ($("#current").text() === $("#player1").val()) {
+                    score = $("#score1")
+                } else { score = $("#score2")}
+
+                score.val(parseInt(score.val()) + total);
+                if (score.val() >=100) {
+                    alert( $("#current").text() + "WIN!");
+                    newGame();
+                } else {changePlayers();}
+            });
+        })
+
+    </script>
+</body>
+</html>

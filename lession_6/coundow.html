@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        width: 600px;
+        margin: 0 auto;
+        border: 2px solid blue;
+        padding: 10px;
+    }
+    .title {
+        margin: 0;
+    }
+    label { 
+        display: inline-block;
+        width: 100px;
+        margin-bottom: 20px;
+    } 
+</style>
+<body>
+    <main>
+        <div class="container">
+            <h1 class="title">Countdown to...</h1>
+            <label for="event">Event Name:</label>
+            <input type="text" id="event" name="event" placeholder=""> <br>
+            <label for="date">Event Date:</label>
+            <input type="text" id="date" name="date" placeholder=""> <br>
+            <input type="button" id="countdown" value="Countdown!">
+            <p id="message">&nbsp;</p>
+        </div>
+    </main>
+    <script
+        src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous">
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#countdown").click(function() {
+                var event = $("#event").val();
+                var dt = $("#date").val();
+                var message = $("#message");
+                // make sure task and due task are entered
+                if (event.length === 0 || dt.length === 0) {
+                    message.text("Please enter both a name and a date");
+                    return;
+                }
+
+                if (dt.indexOf("/") === -1) {
+                    message.text("Please enter the date om MM/DD/YYYY format/.");
+                    return;
+                }
+                var year = dt.substring(dt.length - 4);
+                if (isNaN(year)) {
+                    message.text("Please enter the date om MM/DD/YYYY format/.")
+                    return;
+                }
+                // convert due date string do Date object adn check for validity
+                var date = new Date(dt);
+                if (date === "Invalid Date") {
+                    message.text("Please enter the date om MM/DD/YYYY format/.");
+                    return;
+                };
+
+                // calculator days
+
+                var today = new Date();
+                var oneDay = 24*60*60*1000; 
+                var days = (date.getTime() - today.getTime()) / oneDay;
+                days = Math.ceil(days);
+
+                // create and display message
+
+                if (days === 0) {
+                    message.text("Hooray! Today is".concat(event.toLowerCase(), "!\n(", date.toDateString(), ")"));
+                }
+                if (days < 0) {
+                    // capitalize event
+                    event = event.substring(0,1).toUpperCase() + event.substring(1);
+                    message.text( event.concat("happened ", Math.abs(days), "day(s) ago. \n(", date.toDateString(), ")") );
+                }
+                if (days > 0) {
+                    message.text( days.toString().concat( "day(s) until ",  event.toLowerCase(), "!\n(", date.toDateString(), ")") );
+                }
+            });
+            $("#event").focus();
+        })
+    </script>
+</body>
+</html>
