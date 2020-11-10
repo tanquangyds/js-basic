@@ -9,16 +9,16 @@
 <body>
     <main id="faqs">
         <h1>JavaScript FAQs</h1>
-        <h2><a href="#">What is JavaScript</a></h2>
-        <div class="close">
+        <h2 class="list-style-type"><a href="#">What is JavaScript</a></h2>
+        <div class="description close">
             <p>JavaScript is the Programming Language for the Web. JavaScript can update and change both HTML and CSS. JavaScript can calculate, manipulate and validate data.</p>
         </div>
-        <h2><a href="#">What is JQuery</a></h2>
-        <div class="close">
+        <h2 class="list-style-type"><a href="#">What is JQuery</a></h2>
+        <div class="description close">
             <p>jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.</p>
         </div>
-        <h2><a href="#">Why JQuery becoming to popular?</a></h2>
-        <div class="close">
+        <h2 class="list-style-type"><a href="#">Why JQuery becoming to popular?</a></h2>
+        <div class="description close">
             <p>Three reasons</p>
             <ul>
                 <li>It's free</li>
@@ -36,17 +36,17 @@
             var h2 = this;
             var div = h2.nextElementSibling;
             
-            if (h2.hasAttribute('class')) {
-                h2.removeAttribute('class');
+           
+            if (div.classList.contains('close')) {
+                div.classList.remove('close');
             } else {
-                h2.setAttribute('class', 'minus');
+                div.classList.add('close');
             }
-            if (div.getAttribute('class') === 'close') {
-                div.removeAttribute('class');
-                div.setAttribute('class', 'open');
+            if (!div.classList.contains('close')) {
+                h2.classList.remove('list-style-type');
+                h2.classList.add('minus');
             } else {
-                div.removeAttribute('class');
-                div.setAttribute('class', 'close');
+                h2.classList.add('list-style-type');
             }
         }
         window.onload = function () {

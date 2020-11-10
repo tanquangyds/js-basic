@@ -1,10 +1,20 @@
 /*  base class */
-.open {
-  display: block;
-}
 .minus {
-  color: blue;
+  color: red;
 }
 .close {
   display: none;
+}
+.list-style-type::before {
+  content: url(https://img.icons8.com/metro/26/000000/plus.png);
+  position: relative;
+  right: 6px;
+  top: 6px;
+  width: 100%;
+}
+
+.description {
+  border: 1px solid #333;
+  border-top: 1px solid transparent;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
