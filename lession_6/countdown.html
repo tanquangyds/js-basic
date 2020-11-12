@@ -33,62 +33,65 @@
             <p id="message">&nbsp;</p>
         </div>
     </main>
-    <script
-        src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-        crossorigin="anonymous">
-    </script>
     <script>
-        $(document).ready(function() {
-            $("#countdown").click(function() {
-                var event = $("#event").val();
-                var dt = $("#date").val();
-                var message = $("#message");
-                // make sure task and due task are entered
-                if (event.length === 0 || dt.length === 0) {
-                    message.text("Please enter both a name and a date");
-                    return;
-                }
+        var $ = function(id) {
+            return document.getElementById(id);
+        };
+        var calculateDays = function() {
+            var event = $("event").value;
+            var dt = $("date") .value;
+            var message = $("message").firstChild;
 
-                if (dt.indexOf("/") === -1) {
-                    message.text("Please enter the date om MM/DD/YYYY format/.");
-                    return;
-                }
-                var year = dt.substring(dt.length - 4);
-                if (isNaN(year)) {
-                    message.text("Please enter the date om MM/DD/YYYY format/.")
-                    return;
-                }
-                // convert due date string do Date object adn check for validity
-                var date = new Date(dt);
-                if (date === "Invalid Date") {
-                    message.text("Please enter the date om MM/DD/YYYY format/.");
-                    return;
-                };
+            // make sure task and due date are entered
 
-                // calculator days
+            if (event.length === 0 || dt.length === 0) {
+                message.nodeValue = "Please enter both a name and a date";
+                return;
+            }
 
-                var today = new Date();
-                var oneDay = 24*60*60*1000; 
-                var days = (date.getTime() - today.getTime()) / oneDay;
-                days = Math.ceil(days);
+            // make sure the due date string has slashes and a 4-digit year
 
-                // create and display message
+            if (dt.indexOf('/') !== -1) {
+                message.nodeValue = "Please enter a date in MM/DD/YYYY format";
+                return;
+            }
 
-                if (days === 0) {
-                    message.text("Hooray! Today is".concat(event.toLowerCase(), "!\n(", date.toDateString(), ")"));
-                }
-                if (days < 0) {
-                    // capitalize event
-                    event = event.substring(0,1).toUpperCase() + event.substring(1);
-                    message.text( event.concat("happened ", Math.abs(days), "day(s) ago. \n(", date.toDateString(), ")") );
-                }
-                if (days > 0) {
-                    message.text( days.toString().concat( "day(s) until ",  event.toLowerCase(), "!\n(", date.toDateString(), ")") );
-                }
-            });
-            $("#event").focus();
-        })
+            var year = dt.substring(dt.length - 4);
+            if (isNaN(year)) {
+                message.nodeValue = "Please enter a date in MM/DD/YYYY format";
+                return;
+            }
+
+            // covert due date string to date object and make sure date is valid
+            var date = new Date(dt);
+            if (date === "Invavid date") {
+                message.nodeValue = "Please enter a date in MM/DD/YYYY format";
+                return;
+            }
+            // calculate days
+            var today = new Date();
+            var oneDay = 24*60*60*1000; 
+            var days = (date.getTime() - today.getTime()) / oneDay;
+            days = Math.ceil(days);
+            
+            // create and display message
+
+            if (days === 0) {
+                message.nodeValue = "Hooray! Today is ".concat(event.toLocaleLowerCase(),"!\n(", date.toDateString(), ")");
+            } if (days < 0) {
+                event = event.substring(0,1).toUpperCase() + event.substring(1);
+                message.nodeValue = event.concat("happened", Math.abs(days), "day(s) ago. \n (", date.toDateString(), ")");
+            }
+            if (days > 0) {
+                message.nodeValue = days.toDateString().concat("day(s) until"),
+                event.toLocaleLowerCase(), "!\n(", date.toDateString(), ")";
+            };
+
+        };
+        window.onload = function () {
+            $("countdown").onclick = calculateDays;
+            $("event").focus();
+        }
     </script>
 </body>
 </html>
