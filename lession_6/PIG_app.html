@@ -85,7 +85,7 @@
                 $("#roll").focus();
             };
 
-            $("#new_game").click( function() {
+            var newGame = function() {
                 $("#score1").val("0");
                 $("#score2").val("0");
 
@@ -96,7 +96,11 @@
                     $("#turn").addClass("open");
                     changePlayers();
                 }
-            })
+            };
+
+            $("#new_game").click(newGame);
+
+
             $("#roll").click(function() {
                 var total = parseInt($("#total").val());
                 var die = getRandomNumber(6);
@@ -110,6 +114,7 @@
             });
             $("#hold").click(function() {
                 var score;
+                console.log(parseInt($("#total").val()));
                 var total = parseInt($("#total").val());
                 if ($("#current").text() === $("#player1").val()) {
                     score = $("#score1")
