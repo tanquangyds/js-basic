@@ -35,7 +35,7 @@
         <form action="">
             <label for="math">Math Scores: </label>
                 <input type="text" id="math">
-                <span>*</span>  <br>
+                <span>*abc</span>  <br>
             <label for="physics">Physics score: </label>
                 <input type="text" id="physics">
                 <span>*</span> <br>
@@ -56,38 +56,43 @@
         }
         
         var processEntries = function () {
-            var math = parseInt($("math").value);
-            var physics = parseInt($("physics").value);
-            var chemistry = parseInt($("chemistry").value);
+            var math = ($("math").value);
+            var physics = ($("physics").value);
+            var chemistry = ($("chemistry").value);
             var isValid = true;
             // create check points function
-            var isRequired = function (object) {
-                if (object == "") {
-                    $(object).nextElementSibling.innerHTML = "This field is required";
-                    isValid = false;
-                } 
+            var isRequired = function (object, id) {
+                if (object === "") {
+                    $(id).nextElementSibling.firstChild.nodeValue = "This field is required";
+                }
                 if (isNaN(object)) {
-                    $(object).nextElementSibling.innerHTML = "This field must be a number";
+                    $(id).nextElementSibling.firstChild.nodeValue = "This field must be a number";
+                    console.log($(id).nextElementSibling.firstChild.nodeValue);
                     isValid = false;
                 }
                 if (object < 0 || object > 10) {
-                    $(object).nextElementSibling.innerHTML = "This field must be from 0 to 10";
+                    $(id).nextElementSibling.firstChild.nodeValue = "This field must be from 0 to 10";
                     isValid = false;
+                    console.log($(id).nextElementSibling.firstChild.nodeValue);
                 }
                 else {
-                    $(object).nextElementSibling.innerHTML = "";
+                    $(id).nextElementSibling.firstChild.nodeValue = "";
+                    console.log($(id).nextElementSibling.firstChild.nodeValue);
                 }
             }
             // check
-            isRequired(math);
-            isRequired(physics);
-            isRequired(chemistry);
+            isRequired(math, "math");
+            isRequired(physics, "physics");
+            isRequired(chemistry, "chemistry");
             //create calculate function
             var calculate = function (math, physics, chemistry) {
                 return (math + physics + chemistry) / 3;
             }
             // calculate
-            var average = calculate();
+            var average = 0;
+            if (isValid) {
+                averge = calculate();
+            };
             $("average").value = average;
             if (average >= 8) {
                 $("ranking").value = "A";
