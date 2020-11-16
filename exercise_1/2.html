@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        main{
+            width: 640px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid blue;
+        }
+        label{
+            display: inline-block;
+            width: 150px;
+            margin-bottom: 5px;
+        }
+        .calculate {
+            margin-bottom: 30px;
+        }
+        .close {
+            display: none
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1 class="heading_title">
+            Calculate points App
+        </h1>
+        <form action="">
+            <label for="math">Math Scores: </label>
+                <input type="text" id="math">
+                <span>*</span>  <br>
+            <label for="physics">Physics score: </label>
+                <input type="text" id="physics">
+                <span>*</span> <br>
+            <label for="chemistry">Chemistry score: </label>
+                <input type="text" id="chemistry">
+                <span>*</span> <br>
+            <label for="calculate"></label>
+                <input type="button" id="calculate" value="Calculate" class="calculate"> <br>
+            <label for="average">Average Scores: </label>
+                <input type="text" id="average" disabled value="0">  <br>
+            <label for="ranking">Ranking: </label>
+                <input type="text" id="ranking" disabled value=""> <br>
+        </form>
+    </main>
+    <script>
+        function $(id) {
+            return document.getElementById(id);
+        }
+        
+        var processEntries = function () {
+            var math = parseInt($("math").value);
+            var physics = parseInt($("physics").value);
+            var chemistry = parseInt($("chemistry").value);
+            var isValid = true;
+            // create check points function
+            var isRequired = function (object) {
+                if (object == "") {
+                    $(object).nextElementSibling.innerHTML = "This field is required";
+                    isValid = false;
+                } 
+                if (isNaN(object)) {
+                    $(object).nextElementSibling.innerHTML = "This field must be a number";
+                    isValid = false;
+                }
+                if (object < 0 || object > 10) {
+                    $(object).nextElementSibling.innerHTML = "This field must be from 0 to 10";
+                    isValid = false;
+                }
+                else {
+                    $(object).nextElementSibling.innerHTML = "";
+                }
+            }
+            // check
+            isRequired(math);
+            isRequired(physics);
+            isRequired(chemistry);
+            //create calculate function
+            var calculate = function (math, physics, chemistry) {
+                return (math + physics + chemistry) / 3;
+            }
+            // calculate
+            var average = calculate();
+            $("average").value = average;
+            if (average >= 8) {
+                $("ranking").value = "A";
+            }
+            if (average >= 6.5) {
+                $("ranking").value = "B";
+            }
+            if (average >= 5) {
+                $("ranking").value = "B";
+            } 
+            else {
+                $("ranking").value = "B";
+            };
+        }
+        window.onload = function () {
+            $("calculate").onclick = processEntries;
+        }
+    </script>
+</body>
+</html>
