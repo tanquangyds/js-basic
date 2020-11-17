@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Excercise 7</title>
+  </head>
+  <body>
+    <h1>Student infomation</h1>
+
+    <script>
+      var $ = function (id) {
+        return document.getElementById("id");
+      };
+      var studentCode = "A01";
+      var studentName = "Peter";
+      var studentAge = 23;
+      var studentSex = "male";
+      var check = true;
+
+      function insertInf(item, inf) {
+        var element = document.createElement("span");
+        element.innerText = `${item} : ${inf} `;
+        document.body.appendChild(element);
+      }
+      var i = 0;
+      while (i < 1) {
+        studentCode = prompt(`Enter Code of student ${i}`);
+        studentName = prompt(`Enter Name of student ${i}`);
+        studentAge = prompt(`Enter Age of student ${i}`);
+        studentSex = prompt(`Enter Sex of student ${i}`);
+
+        if (
+          studentCode === "" ||
+          studentName === "" ||
+          studentAge === "" ||
+          studentSex === ""
+        ) {
+          alert("Phai nhap day du du lieu");
+          continue;
+        }
+        console.log("OK");
+        insertInf("Code", studentCode);
+        insertInf("Name", studentName);
+        insertInf("Age", studentAge);
+        insertInf("Sex", studentSex);
+        i++;
+      }
+    </script>
+  </body>
+</html>

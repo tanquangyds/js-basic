@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Exercises 02</title>
     <style>
         * {
             box-sizing: border-box;
@@ -25,6 +25,9 @@
         .close {
             display: none
         }
+        .form-message {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -35,17 +38,17 @@
         <form action="">
             <label for="math">Math Scores: </label>
                 <input type="text" id="math">
-                <span>*abc</span>  <br>
+                <span class="form-message">*</span><br>
             <label for="physics">Physics score: </label>
                 <input type="text" id="physics">
-                <span>*</span> <br>
+                <span class="form-message">*</span><br>
             <label for="chemistry">Chemistry score: </label>
                 <input type="text" id="chemistry">
-                <span>*</span> <br>
+                <span class="form-message">*</span><br>
             <label for="calculate"></label>
                 <input type="button" id="calculate" value="Calculate" class="calculate"> <br>
             <label for="average">Average Scores: </label>
-                <input type="text" id="average" disabled value="0">  <br>
+                <input type="text" id="average" disabled value=""><br>
             <label for="ranking">Ranking: </label>
                 <input type="text" id="ranking" disabled value=""> <br>
         </form>
@@ -56,29 +59,22 @@
         }
         
         var processEntries = function () {
-            var math = ($("math").value);
-            var physics = ($("physics").value);
-            var chemistry = ($("chemistry").value);
+            var math = parseInt($("math").value);
+            var physics = parseInt($("physics").value);
+            var chemistry = parseInt($("chemistry").value);
             var isValid = true;
             // create check points function
             var isRequired = function (object, id) {
-                if (object === "") {
-                    $(id).nextElementSibling.firstChild.nodeValue = "This field is required";
-                }
                 if (isNaN(object)) {
                     $(id).nextElementSibling.firstChild.nodeValue = "This field must be a number";
-                    console.log($(id).nextElementSibling.firstChild.nodeValue);
                     isValid = false;
+                } else {
+                    $(id).nextElementSibling.firstChild.nodeValue = "";
                 }
                 if (object < 0 || object > 10) {
                     $(id).nextElementSibling.firstChild.nodeValue = "This field must be from 0 to 10";
                     isValid = false;
-                    console.log($(id).nextElementSibling.firstChild.nodeValue);
-                }
-                else {
-                    $(id).nextElementSibling.firstChild.nodeValue = "";
-                    console.log($(id).nextElementSibling.firstChild.nodeValue);
-                }
+                };
             }
             // check
             isRequired(math, "math");
@@ -90,25 +86,25 @@
             }
             // calculate
             var average = 0;
+
             if (isValid) {
-                averge = calculate();
+                average = calculate(math, physics, chemistry).toFixed(1);
+                $("average").value = average;
+                if (average <5) {
+                    $("ranking").value = "D";
+                } else if (average <6.5) {
+                    $("ranking").value = "C";
+                } else if (average <8) {
+                    $("ranking").value = "B";
+                } else {
+                    $("ranking").value = "A";  
+                };
             };
-            $("average").value = average;
-            if (average >= 8) {
-                $("ranking").value = "A";
-            }
-            if (average >= 6.5) {
-                $("ranking").value = "B";
-            }
-            if (average >= 5) {
-                $("ranking").value = "B";
-            } 
-            else {
-                $("ranking").value = "B";
-            };
+            
         }
         window.onload = function () {
             $("calculate").onclick = processEntries;
+            $("math").focus();
         }
     </script>
 </body>

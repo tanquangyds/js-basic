@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Excercise 11</title>
+  </head>
+  <body>
+    <script>
+      var check = true;
+      while (check == true) {
+        var number = prompt("Enter an number");
+        if (!isNaN(parseInt(number)) && parseInt(number) > 0) {
+          check = false;
+          break;
+        }
+        alert("Value is number > 0");
+      }
+      for (let i = 0; i < number; i++) {
+        var st = "";
+        for (let j = 0; j <= i; j++) {
+          st += "*";
+        }
+        var row = document.createElement("p");
+        row.style.textAlign = "center";
+        row.innerHTML = st;
+        document.body.appendChild(row);
+      }
+    </script>
+  </body>
+</html>

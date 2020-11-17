@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Excercise 04</title>
+  </head>
+  <body>
+    <script>
+      var check = false;
+      while (check == false) {
+        var a = prompt("Nhap he so a");
+        var b = prompt("Nhap he so b");
+        var c = prompt("Nhap he so c");
+        if (
+          !isNaN(parseFloat(a)) &&
+          !isNaN(parseFloat(b)) &&
+          !isNaN(parseFloat(c))
+        ) {
+          check = true;
+          break;
+        }
+        alert("a & b & c phải là số");
+      }
+
+      var a = parseFloat(a);
+      var b = parseFloat(b);
+      var c = parseFloat(c);
+      var equation = `Phương trình ${a}x<sup>2</sup> + ${b}x + ${c} = 0 : `;
+      var delta = Math.pow(b, 2) - 4 * a * c;
+      if (delta < 0) {
+        document.write(equation + "vô nghiệm");
+      } else if (delta === 0) {
+        document.write(
+          equation +
+            "có nghiệm kép là : x<sub>1</sub> = x<sub>2</sub> = " +
+            (-b / 2) * a
+        );
+      } else {
+        var x1 = (-b + Math.sqrt(delta)) / (2 * a);
+        var x2 = (-b - Math.sqrt(delta)) / (2 * a);
+        document.write(
+          equation +
+            "có 2 nghiệm là <br>" +
+            `x<sub>1</sub> = ${x1.toFixed(2)}` +
+            "<br>" +
+            `x<sub>2</sub> = ${x2.toFixed(2)}`
+        );
+      }
+    </script>
+  </body>
+</html>

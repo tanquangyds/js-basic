@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var check = false;
+      while (check == false) {
+        var a = prompt("Nhap he so a");
+        var b = prompt("Nhap he so b");
+        if (!isNaN(parseFloat(a)) && !isNaN(parseFloat(b))) {
+          check = true;
+          break;
+        }
+        alert("a & b phải là số ");
+      }
+
+      a = parseInt(a);
+      b = parseInt(b);
+      function greatestCommonDivisor(a, b) {
+        if (a == 0 || b == 0) {
+          return a + b;
+        }
+        while (a != b) {
+          if (a > b) {
+            a -= b;
+          } else {
+            b -= a;
+          }
+        }
+        return a;
+      }
+
+      document.write(
+        `Uớc chung lớn nhất của ${a} và ${b} là : `,
+        greatestCommonDivisor(a, b)
+      );
+    </script>
+  </body>
+</html>
