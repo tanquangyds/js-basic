@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        window.onload = function () {
+        if (localStorage.title) {
+            localStorage.title = parseInt(localStorage.title) + 1;
+        } else { localStorage.title = 1 }
+
+        if (sessionStorage.title) {
+            sessionStorage.title = parseInt(sessionStorage.title) + 1;
+        } else { sessionStorage.title = 1 }
+
+    }
+
+    </script>
+</body>
+</html>

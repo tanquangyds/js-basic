@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h1>Task Manager</h1>
+        <div id="tasks">
+            <label for="tasks">Task list</label><br>
+            <textarea name="" id="task_list" cols="50" rows="6" ></textarea>
+        </div>
+
+        <label for="task">Task:</label><br>
+        <input type="text" name="task" id="task"><br>
+
+        <input type="button" name="add_task" id="add_task" value="Add Task"><br>
+        <input type="button" name="clear_tasks" id="clear_tasks" value="Clear Tasks">
+    </main>
+</body>
+    <script>
+        var $ = function(id){
+            return document.getElementById(id);
+        }
+        var tasks = [];
+
+        var displayTaskList = function(){
+            var list = "";
+            if (tasks.length === 0){
+                var storage = localStorage.getItem("tasks") || "";
+
+                if (storage.length > 0) {
+                    tasks = storage.split("|");
+                }
+            }
+
+            if (tasks.length > 0){
+                tasks.sort();
+                list = tasks.join("\n")
+            }
+
+            $("task_list").value = list;
+            $("task").focus();
+        };
+
+        var addToTaskList = function(){
+            var task = $("task");
+            if (task.value === ""){
+                alert("Please enter a task.");
+            }else{
+                tasks.push(task.value);
+                localStorage.tasks = tasks.join("|");
+
+                task.value = "";
+                displayTaskList();
+            }
+        };
+
+        var clearTaskList = function(){
+            tasks.length = 0;
+            localStorage.tasks = "";
+            $("task_list").value = "";
+            $("task").focus();
+        };
+
+        window.onload = function(){
+            $("add_task").onclick = addToTaskList;
+            $("clear_tasks").onclick = clearTaskList;
+            displayTaskList();
+        };
+
+
+    </script>
+</html>
