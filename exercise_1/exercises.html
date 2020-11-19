@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercises 02</title>
+    <title>Exercises</title>
     <style>
         * {
             box-sizing: border-box;
@@ -49,6 +49,7 @@
                 <input type="text" id="new_a" disabled value=""><br>
             <label for="new_b">New value of b: </label>
                 <input type="text" id="new_b" disabled value=""> <br>
+        </form>
     </section>
     <!-- exercise 02 -->
     <section>
@@ -76,35 +77,86 @@
     <!-- exercise 03 -->
     <section>
         <h1>Exercise 03 - Find x from ax + b = 0 equation </h1>
-      <form action="">
-        <label for="a">Value of a: </label>
-          <input type="text" id="a">
-          <span class="form-message">*</span><br>
-        <label for="b">Value of b: </label>
-          <input type="text" id="b">
-          <span class="form-message">*</span><br>
-        <label for="find_x"></label>
-          <input type="button" id="find_x" value="Find X" class="calculate"> <br>
-        <label for="x">Value of x:</label>
-          <input type="text" id="x" disabled value=""><br>  
+        <form action="">
+            <label for="a">Value of a: </label>
+            <input type="text" id="a">
+            <span class="form-message">*</span><br>
+            <label for="b">Value of b: </label>
+            <input type="text" id="b">
+            <span class="form-message">*</span><br>
+            <label for="find_x"></label>
+            <input type="button" id="find_x" value="Find X" class="calculate"> <br>
+            <label for="x">Value of x:</label>
+            <input type="text" id="x" disabled value=""><br>
+        </form>
     </section>
     <!-- exercise 04 -->
     <section>
         <h1>Exercises 04 - Find x from ax<sup>2</sup> + bx + c = 0 equation </h1>
-      <form action="">
-        <label for="ex4_a">Value of a: </label>
-          <input type="text" id="ex4_a">
-          <span class="form-message">*</span><br>
-        <label for="ex4_b">Value of b: </label>
-          <input type="text" id="ex4_b">
-          <span class="form-message">*</span><br>
-        <label for="ex4_c">Value of c: </label>
-          <input type="text" id="ex4_c">
-          <span class="form-message">*</span><br>
-        <label for="find_equal_x"></label>
-          <input type="button" id="find_equal_x" value="Find X" class="calculate"> <br>
-        <label for="x">Value of x:</label>
-          <input type="text" id="x" disabled value=""><br>
+        <form action="">
+            <label for="ex4_a">Value of a: </label>
+            <input type="text" id="ex4_a">
+            <span class="form-message">*</span><br>
+            <label for="ex4_b">Value of b: </label>
+            <input type="text" id="ex4_b">
+            <span class="form-message">*</span><br>
+            <label for="ex4_c">Value of c: </label>
+            <input type="text" id="ex4_c">
+            <span class="form-message">*</span><br>
+            <label for="find_equal_x"></label>
+            <input type="button" id="find_equal_x" value="Find X" class="calculate"> <br>
+            <label for="ex4_x">Value of x:</label>
+            <input type="text" id="ex4_x" disabled value=""><br>
+        </form>
+    </section>
+    <!-- Exercise 05 -->
+    <section>
+        <h1>Exercises 05 - Sum of number from 0 to...X</h1>
+        <form action="">
+            <label for="num">Put X </label>
+            <input type="text" id="num">
+            <span class="form-message">*</span><br>
+            <label for="sum"></label>
+            <input type="button" id="sum" value="Sum" class="calculate"> <br>
+            <label for="sum_num">Result</label>
+            <input type="text" id="sum_num" disabled value=""><br>
+        </form>
+    </section>
+    <!-- Exercise 06 -->
+    <section>
+        <h1>Exercises 06 - List of First "X" Fibonacci Numbers</h1>
+        <form action="">
+            <label for="num6">Put X </label>
+            <input type="text" id="num6">
+            <span class="form-message">*</span><br>
+            <label for="print"></label>
+            <input type="button" id="print" value="Print" class="calculate"> <br>
+            <label for="print_list">Result</label>
+                <span class="form-message" id="print_list">*</span><br>
+        </form>
+    </section>
+    <!-- Exercise 07 -->
+    <section>
+        <h1>Exercises 07 - Student management</h1>
+        <h2>Input until press esc</h2>
+        <h5><i>* Input data for each student, when press Esc key with show all students*</i></h5>
+        <form action="">
+            <label for="studentCode">Student code:</label>
+                <input type="text" id="studentCode">
+                <span class="form-message">*</span><br>
+            <label for="studentName">Student name:</label>
+                <input type="text" id="studentName">
+                <span class="form-message">*</span><br>
+            <label for="studentAge">Student age:</label>
+                <input type="text" id="studentAge">
+                <span class="form-message">*</span><br>
+            <label for="studentSex">Student sex:</label>
+                <input type="text" id="studentSex">
+                <span class="form-message">*</span><br>
+            <label for="btn_7"></label>
+            <input type="button" id="btn_7" value="Confirm" class="calculate"> <br>
+            <span class="form-message" id="ex7_result">*</span><br>
+        </form>
     </section>
     <script>
         function $(id) {
@@ -235,7 +287,7 @@
       }
     //  call
       $("find_x").onclick = ex3ProcessEntries;
-    // exercise 04 ------------------------------------------------------------------
+    // exercise 04 ------------------------------------------------------------
     var ex4ProcessEntries = function () {
         var ex4_a = parseInt($("ex4_a").value);
         var ex4_b = parseInt($("ex4_b").value);
@@ -258,11 +310,7 @@
             isValid = false;
         } else {
             $("ex4_b").nextElementSibling.firstChild.nodeValue = "";
-        }
-        if (ex4_b === 0) {
-          $("ex4_b").nextElementSibling.firstChild.nodeValue = "Value of a must not equal zero";
-          isValid = false;
-        }
+        }   
         // isValid c
         if (isNaN(ex4_c)) {
             $("ex4_c").nextElementSibling.firstChild.nodeValue = "This field must be a number";
@@ -274,10 +322,131 @@
         //create calculate function
         var calculate = function (a,b,c) {
             var delta = (b*b - 4 * a * c);
-            
+            if (delta < 0) {
+                $("ex4_x").value = "No roof";
+            } else if (delta === 0) {
+                $("ex4_x").value = `${(+ -b / (2 * a)).toFixed(1)}`;
+            } else if (delta > 0) {
+                $("ex4_x").value = `${((-b + Math.sqrt(delta)) / (2 * a)).toFixed(1)} ; ${((- b - Math.sqrt(delta)) / (2 * a)).toFixed(1)}`;
+            }
+        };
+        if(isValid) {
+        calculate(ex4_a, ex4_b, ex4_c);
         }
       }
       $("find_equal_x").onclick = ex4ProcessEntries;
+    // exercise 05
+    var ex5ProcessEntries = function() {
+        var num = parseFloat($('num').value);
+        // validate
+        if (isNaN(num)) {
+            $("num").nextElementSibling.firstChild.nodeValue = "This field must be a integer number";
+            isValid = false;
+        } if (Math.floor(num) !== num) {
+            $("num").nextElementSibling.firstChild.nodeValue = "This field must be a integer number";
+            isValid = false;
+        } else if (num < 0) {
+            $("num").nextElementSibling.firstChild.nodeValue = "This field must be over zero";
+        } else {
+            $("num").nextElementSibling.firstChild.nodeValue = "";
+            isValid = true;
+        };
+
+        var calculate = function(num) {
+            let sum = 0;
+            for (let i = 0; i <= num; i++) {
+                sum += i;
+            }
+            return sum;
+        } 
+        if (isValid) {
+            sum = calculate(num);
+            $('sum_num').value = sum;
+        }
+    }
+    $("sum").onclick = ex5ProcessEntries;
+    // exercise 06 
+    var ex6ProcessEntries = function() {
+        var num6 = parseFloat($('num6').value);
+        // validate
+        if (isNaN(num6)) {
+            $("num6").nextElementSibling.firstChild.nodeValue = "This field must be a integer number";
+            isValid = false;
+        } if (Math.floor(num6) !== num6) {
+            $("num6").nextElementSibling.firstChild.nodeValue = "This field must be a integer number";
+            isValid = false;
+        } else if (num6 < 0) {
+            $("num6").nextElementSibling.firstChild.nodeValue = "This field must be over zero";
+        } else {
+            $("num6").nextElementSibling.firstChild.nodeValue = "";
+            isValid = true;
+        };
+        
+        var arr6 = [0, 1];
+        var calculate = function(num) {
+            for (let i = 2; i < num; i++) {
+            let fn = arr6[i - 1] + arr6[i - 2];
+            arr6.push(fn);}
+            return arr6;
+        };
+        if (isValid) {
+            calculate(num6);
+            $('print_list').innerHTML = `${arr6.join(', ')}`;
+        };
+    }
+    $("print").onclick = ex6ProcessEntries;
+    // Exercise 07
+    var arr7 = [];
+    var ex7ProcessEntries = function() {
+        
+        var code = $('studentCode').value;
+        var name = $('studentName').value;
+        var age = $('studentAge').value;
+        var gender = $('studentSex').value;
+        var inValid = true;
+        var process = function(value, index) {
+            if (value === "") {
+                $(index).nextElementSibling.firstChild.nodeValue = "This field is required";
+                inValid = false;
+            } else {
+                $(index).nextElementSibling.firstChild.nodeValue = "This field is required";
+                isValid = true;
+            }
+        };
+        process(code, "studentCode");
+        process(name, "studentName");
+        process(age, "studentAge");
+        process(gender, "studentSex");
+        
+        if (isValid) {
+            arr7.push({
+            studentCode: code,
+            studentName: name,
+            studentAge: age,
+            studentSex: gender
+        });
+        }
+        console.log(arr7);
+        $('studentCode').value = "";
+        $('studentName').value = "";
+        $('studentAge').value = "";
+        $('studentSex').value = "";
+
+        $('btn_7').addEventListener("keyup", myFunction)
+        function myFunction(event) {
+            if (event.keyCode === 27) {
+                for (let i = 0; i < arr7.length; i++) {
+                    $('ex7_result').innerHTML = `
+                <h3>Student:</h3>
+                <h4>studentCode: ${arr7[i].studentCode}</h4>
+                <h4>StudentName: ${arr7[i].studentName}</h4>
+                <h4>studentAge: ${arr7[i].studentAge}</h4>
+                <h4>studentSex: ${arr7[i].studentSex}</h4>`;
+                }
+            }
+        };
+    }
+    $('btn_7').onclick = ex7ProcessEntries;
     </script>
 </body>
 </html>
