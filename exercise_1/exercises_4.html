@@ -32,7 +32,7 @@
   </head>
   <body>
     <main>
-      <h1>Find x from ax<sup>2</sup> + bx + c = 0 equation </h1>
+      <h1>Exercises 04 - Find x from ax<sup>2</sup> + bx + c = 0 equation </h1>
       <form action="">
         <label for="a">Value of a: </label>
           <input type="text" id="a">
@@ -83,35 +83,11 @@
         // isValid c
         if (isNaN(c)) {
             $("c").nextElementSibling.firstChild.nodeValue = "This field must be a number";
-            isValid = false;
-        } else {
+            isValid = false;} else {
             $("c").nextElementSibling.firstChild.nodeValue = "";
         }
         //create calculate function
-        var calculate = function (a,b) {
-          var delta = Math.pow(b, 2) - 4 * a * c;
-          if (delta < 0) {
-            document.write(equation + "vô nghiệm");
-          } else if (delta === 0) {
-          document.write(
-            equation +
-              "có nghiệm kép là : x<sub>1</sub> = x<sub>2</sub> = " +
-              (-b / 2) * a
-          );
-        } else {
-          var x1 = (-b + Math.sqrt(delta)) / (2 * a);
-          var x2 = (-b - Math.sqrt(delta)) / (2 * a);  
-          return -b/a;
-        };
-        if (isValid) {
-            x = calculate(a, b).toFixed(1);
-            $('x').value = x;
-        };
-      }
-      window.onload = function () {
-          $("calculate").onclick = processEntries;
-          $("a").focus();
-      }
+        
     </script>
   </body>
 </html>

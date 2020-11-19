@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <h1>Find x from ax<sup>2</sup> + bx + c = 0 equation </h1>
+      <form action="">
+        <label for="a">Value of a: </label>
+          <input type="text" id="a">
+          <span class="form-message">*</span><br>
+        <label for="b">Value of b: </label>
+          <input type="text" id="b">
+          <span class="form-message">*</span><br>
+        <label for="c">Value of c: </label>
+          <input type="text" id="c">
+          <span class="form-message">*</span><br>
+        <label for="calculate"></label>
+          <input type="button" id="calculate" value="Find X" class="calculate"> <br>
+        <label for="x">Value of x:</label>
+          <input type="text" id="x" disabled value=""><br>
+    </main>
+    <script>
+        function $(id) {
+            return document.getElementById(id);
+        };
+        
+        var processEntries = function () {
+            var a = parseInt($("a").value);
+            var b = parseInt($("b").value);
+            var c = parseInt($("c").value);
+            var isValid = true;
+            // isValid a
+            if (isNaN(a)) {
+                $("a").nextElementSibling.firstChild.nodeValue = "This field must be a number";
+                isValid = false;
+            } else {
+                $("a").nextElementSibling.firstChild.nodeValue = "";
+            }
+            if (a === 0) {
+            $("a").nextElementSibling.firstChild.nodeValue = "Value of a must not equal zero";
+            isValid = false;
+            }
+            // isValid b
+            if (isNaN(b)) {
+                $("b").nextElementSibling.firstChild.nodeValue = "This field must be a number";
+                isValid = false;
+            } else {
+                $("b").nextElementSibling.firstChild.nodeValue = "";
+            }
+            if (b === 0) {
+            $("b").nextElementSibling.firstChild.nodeValue = "Value of a must not equal zero";
+            isValid = false;
+            }
+            // isValid c
+            if (isNaN(c)) {
+                $("c").nextElementSibling.firstChild.nodeValue = "This field must be a number";
+                isValid = false;
+            } else {
+                $("c").nextElementSibling.firstChild.nodeValue = "";
+            }
+            //create calculate function
+            
+        }
+    </script>
+</body>
+</html>

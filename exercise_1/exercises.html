@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercises 02</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        section {
+            width: 640px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid blue;
+        }
+        label{
+            display: inline-block;
+            width: 150px;
+            margin-bottom: 5px;
+        }
+        .calculate {
+            margin-bottom: 30px;
+        }
+        .close {
+            display: none
+        }
+        .form-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!-- exercise 01 -->
+    <section>
+        <h1 class="heading_title">
+            Exercises 01 - Swap value App
+        </h1>
+        <form action="">
+            <label for="value_a">Value of a: </label>
+                <input type="text" id="value_a">
+                <span class="form-message">*</span><br>
+            <label for="value_b">Value of b: </label>
+                <input type="text" id="value_b">
+                <span class="form-message">*</span><br>
+            <label for="swap"></label>
+                <input type="button" id="swap" value="swap" class="calculate"> <br>
+            <label for="new_a">New value of a: </label>
+                <input type="text" id="new_a" disabled value=""><br>
+            <label for="new_b">New value of b: </label>
+                <input type="text" id="new_b" disabled value=""> <br>
+    </section>
+    <!-- exercise 02 -->
+    <section>
+        <h1 class="heading_title">
+            Exercises 02 - Calculate points App
+        </h1>
+        <form action="">
+            <label for="math">Math Scores: </label>
+                <input type="text" id="math">
+                <span class="form-message">*</span><br>
+            <label for="physics">Physics score: </label>
+                <input type="text" id="physics">
+                <span class="form-message">*</span><br>
+            <label for="chemistry">Chemistry score: </label>
+                <input type="text" id="chemistry">
+                <span class="form-message">*</span><br>
+            <label for="calculate"></label>
+                <input type="button" id="calculate" value="Calculate" class="calculate"> <br>
+            <label for="average">Average Scores: </label>
+                <input type="text" id="average" disabled value=""><br>
+            <label for="ranking">Ranking: </label>
+                <input type="text" id="ranking" disabled value=""> <br>
+        </form>
+    </section>
+    <!-- exercise 03 -->
+    <section>
+        <h1>Exercise 03 - Find x from ax + b = 0 equation </h1>
+      <form action="">
+        <label for="a">Value of a: </label>
+          <input type="text" id="a">
+          <span class="form-message">*</span><br>
+        <label for="b">Value of b: </label>
+          <input type="text" id="b">
+          <span class="form-message">*</span><br>
+        <label for="find_x"></label>
+          <input type="button" id="find_x" value="Find X" class="calculate"> <br>
+        <label for="x">Value of x:</label>
+          <input type="text" id="x" disabled value=""><br>  
+    </section>
+    <!-- exercise 04 -->
+    <section>
+        <h1>Exercises 04 - Find x from ax<sup>2</sup> + bx + c = 0 equation </h1>
+      <form action="">
+        <label for="ex4_a">Value of a: </label>
+          <input type="text" id="ex4_a">
+          <span class="form-message">*</span><br>
+        <label for="ex4_b">Value of b: </label>
+          <input type="text" id="ex4_b">
+          <span class="form-message">*</span><br>
+        <label for="ex4_c">Value of c: </label>
+          <input type="text" id="ex4_c">
+          <span class="form-message">*</span><br>
+        <label for="find_equal_x"></label>
+          <input type="button" id="find_equal_x" value="Find X" class="calculate"> <br>
+        <label for="x">Value of x:</label>
+          <input type="text" id="x" disabled value=""><br>
+    </section>
+    <script>
+        function $(id) {
+            return document.getElementById(id);
+        }
+        // exercises 01-------------------------------------------------
+        
+        var ex1ProgressEntries = function() {
+            var value_a = parseFloat($("value_a").value);
+            console.log(value_a);
+            console.log(Math.floor(value_a));
+            var value_b = parseFloat($("value_b").value);
+            console.log(value_b);
+            isValid = true;
+            if (isNaN(value_a)) {
+                $("value_a").nextElementSibling.firstChild.nodeValue = "This field must be a integer number";
+                isValid = false;
+            } else if (Math.floor(value_a) !== value_a) {
+                $("value_a").nextElementSibling.firstChild.nodeValue = "This field must be a integer number";
+                isValid = false;
+            } else {
+                $("value_a").nextElementSibling.firstChild.nodeValue = "";
+                isValid = true;
+            };
+            if (isNaN(value_b)) {
+                $("value_b").nextElementSibling.firstChild.nodeValue = "This field must be a integer number";
+                isValid = false;
+            } else if (Math.floor(value_b) !== value_b) {
+                $("value_b").nextElementSibling.firstChild.nodeValue = "This field must be a integer number";
+                isValid = false;
+            } else {
+                $("value_b").nextElementSibling.firstChild.nodeValue = "";
+                isValid = true;
+            };
+            var swap = function(a, b) {
+                var c = a;
+                a = b;
+                b = c;
+                $("new_a").value = a; 
+                $("new_b").value = b; 
+            };
+            if (isValid) {
+            swap(value_a,value_b);
+            }
+        }
+        // swap function
+        $("swap").onclick = ex1ProgressEntries;
+
+        // exercise 02 ------------------------------------------------------
+        var ex2ProcessEntries = function () {
+            var math = parseFloat($("math").value);
+            var physics = parseFloat($("physics").value);
+            var chemistry = parseFloat($("chemistry").value);
+            var isValid = true;
+            // create check points function
+            var isRequired = function (object, id) {
+                if (isNaN(object)) {
+                    $(id).nextElementSibling.firstChild.nodeValue = "This field must be a number";
+                    isValid = false;
+                } else {
+                    $(id).nextElementSibling.firstChild.nodeValue = "";
+                }
+                if (object < 0 || object > 10) {
+                    $(id).nextElementSibling.firstChild.nodeValue = "This field must be from 0 to 10";
+                    isValid = false;
+                };
+            }
+            // check
+            isRequired(math, "math");
+            isRequired(physics, "physics");
+            isRequired(chemistry, "chemistry");
+            //create calculate function
+            var calculate = function (math, physics, chemistry) {
+                return (math + physics + chemistry) / 3;
+            }
+            // calculate
+            var average = 0;
+
+            if (isValid) {
+                average = calculate(math, physics, chemistry).toFixed(1);
+                $("average").value = average;
+                if (average <5) {
+                    $("ranking").value = "D";
+                } else if (average <6.5) {
+                    $("ranking").value = "C";
+                } else if (average <8) {
+                    $("ranking").value = "B";
+                } else {
+                    $("ranking").value = "A";  
+                };
+            };
+            
+        };
+        // call
+        $("calculate").onclick = ex2ProcessEntries;
+        
+        // exercise 03
+        var ex3ProcessEntries = function () {
+            var a = parseFloat($("a").value);
+            var b = parseFloat($("b").value);
+            var isValid = true;
+            // create check points function
+            if (isNaN(a)) {
+                $("a").nextElementSibling.firstChild.nodeValue = "This field must be a number";
+                isValid = false;
+            } else {
+                $("a").nextElementSibling.firstChild.nodeValue = "";
+            }
+            if (a === 0) {
+            $("a").nextElementSibling.firstChild.nodeValue = "Value of a must not equal zero";
+            isValid = false;
+            }
+            if (isNaN(b)) {
+                $("b").nextElementSibling.firstChild.nodeValue = "This field must be a number";
+                isValid = false;
+            } else {
+                $("b").nextElementSibling.firstChild.nodeValue = "";
+                isValid = true;
+            }
+            //create calculate function
+            var calculate = function (a,b) {
+                return -b/a;
+            };
+            if (isValid) {
+                x = calculate(a, b).toFixed(1);
+                $('x').value = x;
+            };
+      }
+    //  call
+      $("find_x").onclick = ex3ProcessEntries;
+    // exercise 04 ------------------------------------------------------------------
+    var ex4ProcessEntries = function () {
+        var ex4_a = parseInt($("ex4_a").value);
+        var ex4_b = parseInt($("ex4_b").value);
+        var ex4_c = parseInt($("ex4_c").value);
+        var isValid = true;
+        // isValid a
+        if (isNaN(ex4_a)) {
+            $("ex4_a").nextElementSibling.firstChild.nodeValue = "This field must be a number";
+            isValid = false;
+        } else {
+            $("ex4_a").nextElementSibling.firstChild.nodeValue = "";
+        }
+        if (ex4_a === 0) {
+          $("ex4_a").nextElementSibling.firstChild.nodeValue = "Value of a must not equal zero";
+          isValid = false;
+        }
+        // isValid b
+        if (isNaN(ex4_b)) {
+            $("ex4_b").nextElementSibling.firstChild.nodeValue = "This field must be a number";
+            isValid = false;
+        } else {
+            $("ex4_b").nextElementSibling.firstChild.nodeValue = "";
+        }
+        if (ex4_b === 0) {
+          $("ex4_b").nextElementSibling.firstChild.nodeValue = "Value of a must not equal zero";
+          isValid = false;
+        }
+        // isValid c
+        if (isNaN(ex4_c)) {
+            $("ex4_c").nextElementSibling.firstChild.nodeValue = "This field must be a number";
+            isValid = false;
+        } else {
+            $("ex4_c").nextElementSibling.firstChild.nodeValue = "";
+            isValid = true;
+        }
+        //create calculate function
+        var calculate = function (a,b,c) {
+            var delta = (b*b - 4 * a * c);
+            
+        }
+      }
+      $("find_equal_x").onclick = ex4ProcessEntries;
+    </script>
+</body>
+</html>
