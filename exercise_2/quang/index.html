@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .ex{ 
+            width: 600px;
+            border: 2px solid blue;
+            border-radius: 2px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        .message { 
+            color: red;
+        }
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ex">
+        <form >
+            <h1>EXERCISE 01</h1>
+            <p>Please insert the integer number</p>
+            <input type="text" id="box">
+            <input type="button" value="Add" id="push">
+            <input type="button" value="Reset array" id="reset">
+            <span id="message" class="message"></span>
+            <p>Feature</p>
+            <p>1. Print member of array:</p>
+            <input type="button" value="Print member of array" id="print">
+            <span id="print_mess" class="print"></span> <br>
+            <p>2. Find X in array</p>
+            <input type="text" placeholder="input a number" id="x">
+            <input type="button" id="findX" value="find X">
+            <span id="message_2" class="message"></span> <br>
+            <p>3. Find maximum value in array</p>
+            <input type="button" id="max" value="find Maximum Value">
+            <span id="message_3" class="message"></span> <br>
+            <p>4. Find Sum of values in array</p>
+            <input type="button" id="sum" value="find Sum of Values">
+            <span id="message_4" class="message"></span> <br>
+            <p>5. Sort Array Declare</p>
+            <input type="button" id="sort" value="Sort Array Declare">
+            <span id="message_5" class="message"></span> <br>
+        </form>
+    </div>
+    
+    <div class="ex">
+                <h1>EXERCISE 03</h1>
+                <label for="user">User name</label>
+                <input type="text" id="user" />
+                <button id="addUser">Add</button>
+                <span id="message_6" class="message"></span> <br>
+                <div id="userMessage"></div>
+                <br />
+                <button id="printUser">Sort and print</button>
+                <div id="userSortResult"></div>
+    </div>
+    <script>
+        var $ = function(id) {
+            return document.getElementById(id)
+        };
+        var items = [];
+        var pushItem = function () {
+            isValid = true;
+            boxValue = parseFloat($('box').value);
+            console.log(boxValue);
+            if (boxValue == ""){
+                $('message').innerHTML = "*Please input any a integer number";
+                isValid = false;
+            } else if (isNaN(boxValue)) {
+                $('message').innerHTML = "*This field must be a integer number";
+                isValid = false;
+            } else {
+                $('message').innerHTML = "";
+                isValid = true;
+            };
+            if (isValid) {
+                items.push(boxValue);
+                $('box').value = "";
+            }
+            console.log(items);
+            return false;
+        };
+        var resetArray = function() {
+            items = [];
+            $('box').value = "";
+        }
+        // push items to array
+        $('push').onclick = pushItem;
+        // reset array
+        $('reset').onclick = resetArray;
+        var printArray = function(){
+            for (var i = 0; i < items.length; i++) {
+                var result = document.createElement("span");
+                result.innerHTML += items[i] + " "
+                $('print_mess').append(result);
+            }
+        }
+        // print Array
+        $('print').onclick = printArray;
+        var x_value = parseFloat($("x").value);
+        var findX = function () {
+            isValid = true;
+            xValue = parseFloat($('x').value);
+            console.log(xValue);
+            if (xValue == ""){
+                $('message_2').innerHTML = "*Please input any a integer number";
+                isValid = false;
+            } else if (isNaN(xValue)) {
+                $('message_2').innerHTML = "*This field must be a integer number";
+                isValid = false;
+            } else {
+                $('message_2').innerHTML = "";
+                isValid = true;
+            };
+            if (isValid) {
+                for (var i = 0; i < items.length; i++) {
+                    console.log(xValue);
+                    if (items[i] == xValue) {
+                        console.log(items[i]);
+                        $('message_2').innerHTML = `Had ${xValue} in Array`;
+                        break
+                    } else {
+                        $('message_2').innerHTML = `Not found ${xValue} in Array`;
+                    }
+                }
+            }
+        };
+        $('findX').onclick = findX;
+        // find maximum value
+        var max = function() {
+            var maxNumber = items.reduce(function(a, b) {
+            return Math.max(a, b);
+            });
+            $('message_3').innerHTML = maxNumber;
+        }
+        $('max').onclick = max;
+        // find sum
+        var sum = function() {
+            var sumNumber = items.reduce((a, b) => a + b, 0);
+            $('message_4').innerHTML = sumNumber;
+        }
+        $('sum').onclick = sum  ;
+        // sort of values
+        var sort = function() {
+            items.sort(function(a, b){return b-a});
+            for (var i = 0; i < items.length; i++) {
+                var result = document.createElement("span");
+                result.innerHTML += items[i] + " "
+                $('message_5').append(result);
+            }
+        }
+        $('sort').onclick = sort;
+        
+    </script>
+    <script>
+        // ex3
+        userAr = [];
+        function printElement(typeElement, element, elementTarget) {
+            var tagname = document.createElement(typeElement);
+            tagname.innerHTML = element;
+            document.getElementById(elementTarget).appendChild(tagname);
+        };
+        $("addUser").onclick = function () {
+            $("userSortResult").innerHTML = "";
+            var newUser = $("user").value;
+            if (newUser) {
+                userAr.push(newUser);   
+                $('user').value = "";
+                $('message_6').innerHTML = "";
+            } else {$('message_6').innerHTML = "Please input name of member";}
+        };
+        $("printUser").onclick = function () {
+            $("userSortResult").innerHTML = "" ;
+            userAr.sort();
+            for (let i = 0; i < userAr.length; i++) {
+                printElement("div", userAr[i], "userSortResult");
+            }
+        };
+    </script>
+</body>
+</html>

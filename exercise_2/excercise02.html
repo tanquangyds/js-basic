@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Excercise 02</title>
+    <style>
+      .show {
+        display: flex;
+      }
+      .hide {
+        display: none;
+      }
+      .ex {
+        margin: 10px;
+        border: 2px solid;
+        display: inline-block;
+        width: 400px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+      }
+      .ex > div {
+        color: red;
+        text-align: center;
+      }
+      .ex > button {
+        background-color: green;
+        color: white;
+        cursor: pointer;
+      }
+      .ex > button:hover {
+        background-color: blue;
+        transition: all 0.4s;
+      }
+      .group {
+        display: flex;
+        flex-direction: column;
+      }
+      .group > button {
+        width: 100%;
+        margin-top: 10px;
+        background-color: green;
+        color: white;
+      }
+      .group > button:hover {
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ex">
+      <h1>EXERCISE 01</h1>
+      <label for="intNumber">Nhập số phần tử trong mảng : </label>
+      <input type="text" id="intNumber" />
+      <br />
+      <button id="dataEntry">Nhập data & In</button>
+      <br />
+      <div id="menu">
+        <label for="choice">Please select number to run</label>
+        <select name="" id="choice">
+          <option value="0" selected="selected">Chọn số</option>
+          <option value="1">1-Print array</option>
+          <option value="2">2-Search a member</option>
+          <option value="3">3-Find max number</option>
+          <option value="4">4-Calculate sum</option>
+          <option value="5">5-Sort array by descending</option>
+        </select>
+      </div>
+      <br />
+      <button id="start">Bắt đầu</button>
+      <br />
+      <div id="printIntArResult"></div>
+      <div id="checkIntNumberResult"></div>
+      <div id="maxIntResult"></div>
+      <div id="sumIntResult"></div>
+      <div id="desSortResult"></div>
+    </div>
+    <div class="ex">
+      <h1>EXERCISE 02</h1>
+      <label for="ninput">Nhập n : </label>
+      <input type="text" id="ninput" value="" />
+      <label for="ninput">Nhập m : </label>
+      <input type="text" id="minput" value="" />
+      <br />
+      <button id="printAr">Khai báo mảng</button>
+      <div id="elementOfAr"></div>
+      <br />
+      <button id="toSum">Tính tổng</button>
+      <div id="sumResult"></div>
+      <br />
+      <label for="search">Nhập số cần tìm : </label>
+      <input type="text" id="search" />
+      <br />
+      <button id="check">Kiểm tra</button>
+
+      <div id="checkResult"></div>
+      <br />
+      <button id="sort">Sắp xếp tăng dần</button>
+      <div id="sortResult"></div>
+    </div>
+
+    <div class="ex">
+      <h1>EXERCISE 03</h1>
+      <label for="user">User name</label>
+      <input type="text" id="user" />
+      <button id="addUser">Thêm user name</button>
+      <div id="userMessage"></div>
+      <br />
+      <button id="printUser">Sắp xếp và in</button>
+      <div id="userSortResult"></div>
+    </div>
+  </body>
+
+  <script>
+    //   excercise 02
+    var ar = new Array();
+    var $ = function (id) {
+      return document.getElementById(id);
+    };
+    var n = $("ninput");
+    var m = $("minput");
+    var btn = document.getElementById("start");
+    function createAr2d(n, m) {
+      for (let i = 0; i < n; i++) {
+        ar[i] = new Array();
+        for (let j = 0; j < m; j++) {
+          ar[i][j] = "-";
+        }
+      }
+    }
+    function printElement(typeElement, element, elementTarget) {
+      var tagname = document.createElement(typeElement);
+      tagname.innerHTML = element;
+      document.getElementById(elementTarget).appendChild(tagname);
+    }
+    function reset(elementTarget) {
+      var element = document.getElementById(elementTarget);
+      element.innerHTML = "";
+    }
+    function printAr2d(n, m) {
+      for (let i = 0; i < n; i++) {
+        for (let j = 0; j < m; j++) {
+          printElement("span", " " + ar[i][j] + " ", "elementOfAr");
+        }
+        printElement("br", "", "elementOfAr");
+      }
+    }
+    function entryArData(n, m) {
+      for (let i = 0; i < n; i++) {
+        for (let j = 0; j < m; j++) {
+          ar[i][j] = prompt(
+            `Nhap phần tử hàng ${i + 1} cột ${j + 1} của mảng : `
+          );
+        }
+      }
+    }
+
+    function toSumAr(n, m) {
+      var sum = 0;
+      var check = true;
+      for (let i = 0; i < n; i++) {
+        for (let j = 0; j < m; j++) {
+          if (!isNaN(parseFloat(ar[i][j]))) {
+            sum += parseFloat(ar[i][j]);
+          } else {
+            check = false;
+            break;
+          }
+        }
+      }
+      return check ? sum : "Mảng không hợp lệ";
+    }
+
+    function checkNumber(number, n, m) {
+      var check = false;
+      for (let i = 0; i < n; i++) {
+        for (let j = 0; j < m; j++) {
+          if (ar[i][j] == number) {
+            check = true;
+          }
+        }
+      }
+      return check ? "có" : "không";
+    }
+
+    function sortAr(n, m) {
+      var newArray = [];
+      for (let i = 0; i < n; i++) {
+        for (let j = 0; j < m; j++) {
+          newArray.push(ar[i][j]);
+        }
+      }
+      newArray.sort();
+      console.log(newArray);
+
+      var number = 0;
+      for (let i = 0; i < n; i++) {
+        for (let j = 0; j < m; j++) {
+          ar[i][j] = newArray[number];
+          printElement("span", " " + ar[i][j] + " ", "sortResult");
+          number++;
+        }
+        printElement("br", "", "sortResult");
+      }
+    }
+
+    $("printAr").onclick = function () {
+      reset("elementOfAr");
+
+      // 1. Declare an 2D array
+      createAr2d(n.value, m.value);
+      // 2. entry data to array
+      entryArData(n.value, m.value);
+      // 3. Print to screen
+      printAr2d(n.value, m.value);
+    };
+    $("toSum").onclick = function () {
+      reset("sumResult");
+
+      //4. to sum element of ar
+
+      printElement(
+        "div",
+        "Tổng là : " + toSumAr(n.value, m.value),
+        "sumResult"
+      );
+    };
+    $("check").onclick = function () {
+      reset("checkResult");
+      var number = $("search").value;
+      var checkResult = checkNumber(number, n.value, m.value);
+      printElement(
+        "div",
+        `Số ${number} ${checkResult} tồn tại trong mảng`,
+        "checkResult"
+      );
+    };
+
+    $("sort").onclick = function () {
+      reset("sortResult");
+      sortAr(n.value, m.value);
+    };
+  </script>
+
+  <script>
+    // excercise 03
+    var userAr = [];
+    $("addUser").onclick = function () {
+      reset("userSortResult");
+
+      var newUser = $("user").value;
+      if (newUser) {
+        userAr.push(newUser);
+        reset("userMessage");
+        printElement("div", `${newUser} vừa được thêm vào`, "userMessage");
+        setTimeout(function () {
+          reset("userMessage");
+          $("user").value = "";
+        }, 700);
+      } else alert("Vui lòng nhập username");
+    };
+    $("printUser").onclick = function () {
+      reset("userSortResult");
+      userAr.sort();
+      for (let i = 0; i < userAr.length; i++) {
+        printElement("div", userAr[i], "userSortResult");
+      }
+      userAr = [];
+    };
+  </script>
+
+  <script>
+    var IntAr = [];
+    var num = $("intNumber");
+
+    function checkIntNumber(number) {
+      var check = false;
+      for (let i = 0; i < IntAr.length; i++) {
+        if (number == IntAr[i]) {
+          check = true;
+          break;
+        }
+      }
+      return check ? "có" : "không";
+    }
+
+    function maxNumber() {
+      var max = IntAr[0];
+      for (let i = 0; i < IntAr.length; i++) {
+        if (IntAr[i] > max) {
+          max = IntAr[i];
+        }
+      }
+      return max;
+    }
+
+    $("dataEntry").onclick = function () {
+      IntAr = [];
+      if (isNaN(parseInt(num.value)) || parseInt(num.value) < 0) {
+        alert("please enter integer number > 0");
+      } else {
+        for (let i = 0; i < parseInt(num.value); i++) {
+          var data = prompt(
+            `Nhập phần từ thứ ${i + 1} / ${num.value} của mảng : `
+          );
+          if (isNaN(parseInt(data))) {
+            alert("Phải là số nguyên, bấm nhập data & in để nhập lại");
+            break;
+          }
+          IntAr.push(parseInt(data));
+        }
+      }
+    };
+
+    $("start").onclick = function () {
+      var choice = $("choice");
+      reset("printIntArResult");
+      reset("checkIntNumberResult");
+      reset("maxIntResult");
+      reset("sumIntResult");
+      reset("desSortResult");
+
+      switch (choice.value) {
+        case "0":
+          alert("Please select a number ");
+          break;
+        case "1":
+          for (let i = 0; i < IntAr.length; i++) {
+            printElement("span", " " + IntAr[i] + " ", "printIntArResult");
+          }
+          break;
+        case "2":
+          var number = prompt("Nhập số cần tìm : ");
+          var check = checkIntNumber(number);
+          printElement(
+            "div",
+            `Số ${number} ${check} trong mảng`,
+            "checkIntNumberResult"
+          );
+          break;
+        case "3":
+          printElement(
+            "div",
+            `Số lớn nhất là : ${maxNumber()}`,
+            "maxIntResult"
+          );
+          break;
+        case "4":
+          printElement(
+            "div",
+            "Tổng là :" + IntAr.reduce((x, y) => x + y, 0),
+            "sumIntResult"
+          );
+          break;
+        case "5":
+          console.log("OK");
+          IntAr.sort();
+          for (let i = IntAr.length; i > 0; i--) {
+            printElement("span", " " + IntAr[i - 1] + " ", "desSortResult");
+          }
+          break;
+        default:
+          alert("Please select number");
+      }
+    };
+  </script>
+</html>

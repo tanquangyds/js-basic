@@ -1,0 +1,53 @@
+.task {
+  flex: 1;
+}
+.cir {
+  border: 1px solid #333;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  position: relative;
+  margin-left: 30px;
+}
+
+.remove {
+  width: 30px;
+  height: 30px;
+  position: relative;
+}
+
+.close_icon:before,
+.close_icon:after {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 2px;
+  background-color: #333;
+  top: 15%;
+  left: 48%;
+  /* transform: translate(-50%, -50%); */
+}
+
+.close_icon:before {
+  transform: rotate(45deg);
+}
+
+.close_icon:after {
+  transform: rotate(-45deg);
+}
+
+.add_icon:before,
+.add_icon:after {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 2px;
+  background-color: #333;
+  top: 15%;
+  left: 48%;
+  /* transform: translate(-50%, -50%); */
+}
+
+.add_icon:after {
+  transform: rotate(-90deg);
+}
