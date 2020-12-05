@@ -85,27 +85,10 @@
           Validator.isSalary('#salary'),
         ],
         onSubmit: function (data) {
-          var incomeCalculation = function (role) {
-            if (role == 'fe') { salary = 1000; var income = salary * 12 + salary * 12 * 20 / 100 };
-            if (role == 'be') { salary = 1100; var income = salary * 12 + salary * 12 * 10 / 100 };
-            if (role == 'qa') { salary = 1200; var income = salary * 12 + salary * 12 * 15 / 100 };
-            if (role == 'pm') { salary = 2000; var income = salary * 12 + salary * 12 * 12 / 100 };
-            return income;
-          };
-          var role = document.getElementById('role').value;
-          for (var i = 0; i < data.length; i++) {
-            data[i]['income'] = incomeCalculation(role);
-          }
           console.log(data);
           // create localStorage
           localStorage['data'] = JSON.stringify(data);
-          // reset value
-          document.getElementById("fullname").value = "";
-          document.getElementById("phone").value = "";
-          document.getElementById("email").value = "";
-          document.getElementById("age").value = "";
-          document.getElementById("role").value = "";
-          document.getElementById("salary").value = "";
+          
         }
       });
     });

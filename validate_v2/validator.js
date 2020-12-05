@@ -92,16 +92,30 @@ function Validator(options) {
                                 break;
                             default:
                                 values[input.name] = input.value;
+                                var incomeCalculation = function (role) {
+                                    var income = 0;
+                                    if (role == 'fe') { salary = 1000; income = salary * 12 + salary * 12 * 20 / 100 };
+                                    if (role == 'be') { salary = 1100; income = salary * 12 + salary * 12 * 10 / 100 };
+                                    if (role == 'qa') { salary = 1200; income = salary * 12 + salary * 12 * 15 / 100 };
+                                    if (role == 'pm') { salary = 2000; income = salary * 12 + salary * 12 * 12 / 100 };
+                                    return income;
+                                };
+                                if (input.name === "role") {
+                                    values.income = incomeCalculation(input.value);
+                                    break;
+                                }
                         }
-                        
                         return values;
                     }, {});
-                    // var resetValue = function() {
-                        
-                    // }
-                    // resetValue();
                     arrData.push(formValues);
                     options.onSubmit(arrData);
+                    // reset value
+                    document.getElementById("fullname").value = "";
+                    document.getElementById("phone").value = "";
+                    document.getElementById("email").value = "";
+                    document.getElementById("age").value = "";
+                    document.getElementById("role").value = "";
+                    document.getElementById("salary").value = "";
                 }
                 // Trường hợp submit với hành vi mặc định
                 else {
