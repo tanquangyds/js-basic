@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main{
+            width: 600px;
+            margin: 0 auto;
+            border: 2px solid blue;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        label {
+            width: 100px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <form action="">
+            <h3>Input  employee information</h3>
+            <label for="name">Name: </label>
+                <input type="text" name="name" id="name">
+                <span id="mesage" class="message">*</span> <br>
+            <label for="phone">Phone: </label>
+                <input type="text" name="phone" id="phone">
+                <span id="mesage" class="message">*</span> <br>
+            <label for="mail">Email: </label>
+                <input type="text" name="mail" id="email_address">
+                <span id="mesage" class="message">*</span> <br>
+            <label for="age">Age: </label>
+                <input type="text" name="age" id="age">
+                <span id="mesage" class="message">*</span> <br>
+            <label for="age">Select a role: </label>
+                <select id="role">
+                    <option value="select">--Selection--</option>
+                    <option value="FE">FE</option>
+                    <option value="BE">BE</option>
+                    <option value="QA">QA</option>
+                    <option value="PM">PM</option>
+                </select>
+                <span id="mesage" class="message">*</span> <br>
+            <label for="salary">Salary</label>
+                <input type="type" name="salary" id="salary">
+                <span id="mesage" class="message">*</span> <br> 
+            <input type="button" value="Save" id="save" class="button">
+            <input type="button" value="Print" id="print" class="button">
+        </form>
+    </div>
+    <script>
+        var $ = function (id) {
+            return document.getElementById(id)
+        };
+        var arr = [];
+        var processEntries = function () {
+            var required =  'Required field';
+            var isEmail =  'This field must be a valid email address';
+            var isPhone =  'This field must be a valid phone number';
+            var isAge =  'This field must be a valid age';
+            var isSalary =  'This field must be a choose';
+            // var msg =  'Please review your entries and complete all required fields';
+            // get value from user entries  
+            var userName = $('name').value;
+            var email = $('email_address').value;
+            var phone = $('phone').value;
+            var age = $('age').value;
+            var role = $('role').value;
+            var salary = $('salary').value;
+            isValid = true;
+            // check user entries for validity
+
+            if (userName === '') {
+                $('name').nextElementSibling.firstChild.nodeValue = required;
+                isValid = false;
+            } else {
+                $('name').nextElementSibling.firstChild.nodeValue = "";
+                isValid = true;
+            }
+
+            var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (email === '') {
+                $('email_address').nextElementSibling.firstChild.nodeValue = required;
+                isValid = false;
+            } else if (!regex.test(email)) {
+                $('email_address').nextElementSibling.firstChild.nodeValue = isEmail;
+                isValid = false;
+            } else {
+                $('email_address').nextElementSibling.firstChild.nodeValue = "";
+                isValid = true;
+            }
+
+            if (phone === '') {
+                $('phone').nextElementSibling.firstChild.nodeValue = required;
+                isValid = false;
+            } else if (!(phone.length === 10)) {
+                $('phone').nextElementSibling.firstChild.nodeValue = isPhone;
+                isValid = false;
+            } else {
+                $('phone').nextElementSibling.firstChild.nodeValue = "";
+                isValid = true;
+            }
+
+            if (age === '') {
+                $('age').nextElementSibling.firstChild.nodeValue = required;
+                isValid = false;
+            } else if (age >= 100 || age <= 0) {
+                $('age').nextElementSibling.firstChild.nodeValue = isAge;
+                isValid = false;
+            } else {
+                $('age').nextElementSibling.firstChild.nodeValue = "";
+                isValid = true;
+            }
+            if (role === 'select') {
+                $('role').nextElementSibling.firstChild.nodeValue = required;
+                isValid = false;
+            } else {
+                $('role').nextElementSibling.firstChild.nodeValue = "";
+                isValid = true;
+            }
+            if (salary === '') {
+                $('salary').nextElementSibling.firstChild.nodeValue = required;
+                isValid = false;
+            } else {
+                $('salary').nextElementSibling.firstChild.nodeValue = "";
+                isValid = true;
+            }
+            if (isValid) {
+                var student = {};
+                student= {
+                    name : userName,
+                    email : email,
+                    phone : phone,
+                    age : age,
+                    role : role,
+                    salary : salary,
+                }
+                arr.push(student);
+                $('name').value = "";
+                $('email_address').value = "";
+                $('phone').value = "";
+                $('age').value = "";
+                $('role').value = "select";
+                $('salary').value = "";
+                localStorage['data'] = JSON.stringify(arr);
+            };
+            
+        };
+        showData = JSON.parse(localStorage['data']);
+        console.log(showData);
+
+        window.onload = function () {
+            $ ('save').onclick = processEntries;
+            // $('reset_form').onclick = resetForm;
+            $('name').focus();
+        }
+    </script>
+</body>
+</html>

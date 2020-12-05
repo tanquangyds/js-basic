@@ -1,5 +1,8 @@
 // Đối tượng `Validator`
 function Validator(options) {
+    // tạo array chứa data
+    var arrData = [];
+    // 
     function getParent(element, selector) {
         while (element.parentElement) {
             if (element.parentElement.matches(selector)) {
@@ -64,7 +67,6 @@ function Validator(options) {
                     isFormValid = false;
                 }
             });
-
             if (isFormValid) {
                 // Trường hợp submit với javascript
                 if (typeof options.onSubmit === 'function') {
@@ -93,7 +95,6 @@ function Validator(options) {
 
                         return values;
                     }, {});
-                    var arrData = [];
                     arrData.push(formValues);
                     options.onSubmit(arrData);
                 }
@@ -173,11 +174,13 @@ Validator.isPhone = function (selector, message) {
     return {
         selector: selector,
         test: function (value) {
-            var regex = /(09|01[2|6|8|9])+([0-9]{8})\b/;
+            var regex = /(03|07|08|09|01[2|6|8|9])+([0-9]{8})\b/;
             return regex.test(value) ? undefined :  message || 'Not a valid phone number';
         }
     };
 }
+
+
 
 Validator.isAge = function (selector, message) {
     return {

@@ -57,6 +57,7 @@
       </div>
 
       <button class="form-submit">Add</button>
+      <button class="form-submit">Display</button>
     </form>
 
   </div>
@@ -83,14 +84,13 @@
           Validator.isSalary('#salary'),
         ],
         onSubmit: function (data) {
-          // localStorage['data'] = JSON.stringify(data);
-          // Call API
-          console.log(data);
+          localStorage['data'] = JSON.stringify(data);
+          var showData = JSON.parse(localStorage['data']);
+          console.log(showData);
         }
       });
     });
-    // var showData = JSON.parse(localStorage['data']);
-    // console.log(showData);
+    
   </script>
 </body>
 </html>

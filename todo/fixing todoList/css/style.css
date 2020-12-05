@@ -1,0 +1,40 @@
+.main {
+  max-width: 550px;
+  max-height: 650px;
+  box-shadow: 0 10px 10px 0 rgba(164, 164, 164, 0.5); }
+
+.task {
+  max-height: 500px;
+  overflow-y: auto; }
+
+.task_main {
+  height: 40px;
+  display: flex;
+  justify-content: space-between; }
+
+.close {
+  position: relative; }
+
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 20px;
+  width: 2px;
+  top: 14px;
+  background-color: #920a0a; }
+
+.close:before {
+  transform: rotate(45deg); }
+
+.close:after {
+  transform: rotate(-45deg); }
+
+.task_tick::before {
+  content: '\2713';
+  color: #177e13;
+  font-size: 20px;
+  font-weight: bold; }
+
+.task_tick:hover, .task_remove:hover {
+  cursor: pointer; }

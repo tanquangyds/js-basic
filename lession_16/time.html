@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Clock</h2>
+    <p id="time"></p>
+    <input type="button" id="start" value="Start">
+    <input type="button" id="stop" value="Stop">
+<script>
+    var isValid = true;
+    var $ = function (id) {
+        return document.getElementById(id);
+    }
+    var myTimer = function() {
+        var d = new Date();
+        $("time").innerHTML = d;
+        console.log('OK 1')
+    };
+    var run = setInterval(myTimer, 1000);
+    var stopFunction = function () {
+        clearInterval(run);
+    }
+    window.onload = function () {
+        $('stop').onclick = stopFunction;
+        $('start').onclick = function() {
+           run = setInterval(myTimer, 1000);
+        }
+    }
+    
+    // $('start').onclick = setInterval(myTimer, 1000)
+    // $('start').onclick = disPlayTime;
+</script>
+</body>
+</html>

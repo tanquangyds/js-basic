@@ -1,0 +1,169 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'DMSans';
+}
+
+ul {
+    margin: 0;
+}
+
+@font-face {
+    font-family: DMSans;
+    src: url(./DMSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: DMSans-Bold;
+    src: url(./DMSans-Bold.ttf);
+}
+
+.wide{
+    height: 100%;
+    background:rgba(128, 128, 128, 0.103);
+    display: flex!important;
+    justify-content:center;
+    align-items:center;
+}
+
+.main{
+    width: 80%;
+    height: 80%;
+    border: 1px solid black;
+}
+
+.title{
+    margin: 10px;
+    font-family: 'DMSans-Bold',sans-serif;
+    font-style: bold;
+    font-size: 22px;
+}
+
+.input_data{
+    min-height: 30px;
+    border-bottom: 1px solid black;
+    display:flex;
+    position: relative;
+}
+
+.form{
+    margin: 10px;
+}
+
+input{
+    padding-left: 5px;
+    height: 30px;
+    width: 380px;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid black;
+}
+
+input:focus{
+   outline: none;
+   border: 3px solid rgb(21, 117, 80);
+}
+
+.task_main{
+    width: 90%;
+    border-bottom: 2px solid black;
+    margin: 0 auto;
+    height: 30px;
+    line-height:50px;
+}
+
+.addbtn{
+    position: absolute;
+    top: 15px;
+    left: 40px;
+}
+
+.removebtn{
+    position: absolute;
+    top: 15px;
+    left: 80px;
+}
+
+.task_remove{
+    width: 30px;
+    height: 40px;
+}
+
+/* SHAPE */
+#cross {
+    background: black;
+    height: 17px;
+    position: relative;
+    width: 2px;
+}
+
+#cross:after {
+    background: black;
+    content: "";
+    height: 2px;
+    left: -8px;
+    position: absolute;
+    top: 8px;
+    width: 17px;
+}
+
+.tick{
+    height: 28px;
+    color: black;
+    border-radius: 50%;
+    border: 2px solid black;
+    width: 28px;
+    position: absolute;
+    top: -5px;
+    left: -13px;
+}
+
+/* delete shape */
+#cross2 {
+    transform: rotate(45deg);
+    background: black;
+    height: 17px;
+    position: relative;
+    width: 2px;
+}
+
+#cross2:after {
+    background: black;
+    content: "";
+    height: 2px;
+    left: -8px;
+    position: absolute;
+    top: 8px;
+    width: 17px;
+}
+
+.btn:hover{
+    cursor: pointer;
+    transform: scale(1.1)!important;
+    transition: 1s;
+    z-index:10;
+}
+
+
+/* ALERT INPUT */
+
+.alert{
+    border: 2px solid red;
+}
+
+
+.alert::placeholder{
+    color: red;
+    font-size: bold;
+}
+
+.ticked::before{
+    color: #f2f2f2!important;
+}
