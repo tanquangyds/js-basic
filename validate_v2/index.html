@@ -57,7 +57,8 @@
       </div>
 
       <button class="form-submit">Add</button>
-      <button class="form-submit">Display</button>
+      <input  type="button" class="form-display" value="Display" id="display"></input>
+      <div class="result" id="result"></div>
     </form>
 
   </div>
@@ -84,12 +85,49 @@
           Validator.isSalary('#salary'),
         ],
         onSubmit: function (data) {
+          var incomeCalculation = function (role) {
+            if (role == 'fe') { salary = 1000; var income = salary * 12 + salary * 12 * 20 / 100 };
+            if (role == 'be') { salary = 1100; var income = salary * 12 + salary * 12 * 10 / 100 };
+            if (role == 'qa') { salary = 1200; var income = salary * 12 + salary * 12 * 15 / 100 };
+            if (role == 'pm') { salary = 2000; var income = salary * 12 + salary * 12 * 12 / 100 };
+            return income;
+          };
+          var role = document.getElementById('role').value;
+          for (var i = 0; i < data.length; i++) {
+            data[i]['income'] = incomeCalculation(role);
+          }
+          console.log(data);
+          // create localStorage
           localStorage['data'] = JSON.stringify(data);
-          var showData = JSON.parse(localStorage['data']);
-          console.log(showData);
+          // reset value
+          document.getElementById("fullname").value = "";
+          document.getElementById("phone").value = "";
+          document.getElementById("email").value = "";
+          document.getElementById("age").value = "";
+          document.getElementById("role").value = "";
+          document.getElementById("salary").value = "";
         }
       });
     });
+    // display employee data
+    var showData = JSON.parse(localStorage['data']);
+    document.getElementById("display").onclick = function() {
+      console.log(showData);
+      for (var i = 0; i < showData.length; i++){
+      var result = document.createElement("div");
+        result.innerHTML = `
+        <h3>EMPLOYEE ${i + 1} </h3>
+        <p>Name: ${showData[i].fullname}</p>
+        <p>Email: ${showData[i].email}</p>
+        <p>Age: ${showData[i].age}</p>
+        <p>Role: ${showData[i].role}</p>
+        <p>Salary: ${showData[i].salary}</p>
+        <p>Income: ${showData[i].income}</p>`;
+        document.getElementById("result").appendChild(result);
+      };
+    }
+    // Income
+    
     
   </script>
 </body>

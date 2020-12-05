@@ -1,0 +1,19 @@
+.form-group{
+    display:flex;
+}
+
+.form-group label{
+    flex:2;
+}
+
+.form-group input{
+    flex:3;
+}
+
+.al{
+   text-align: right;
+}
+
+h4{
+    font-size:12px;
+}

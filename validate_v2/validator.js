@@ -51,6 +51,7 @@ function Validator(options) {
 
     // Lấy element của form cần validate
     var formElement = document.querySelector(options.form);
+    console.log(formElement);   
     if (formElement) {
         // Khi submit form
         formElement.onsubmit = function (e) {
@@ -92,15 +93,19 @@ function Validator(options) {
                             default:
                                 values[input.name] = input.value;
                         }
-
+                        
                         return values;
                     }, {});
+                    // var resetValue = function() {
+                        
+                    // }
+                    // resetValue();
                     arrData.push(formValues);
                     options.onSubmit(arrData);
                 }
                 // Trường hợp submit với hành vi mặc định
                 else {
-                    formElement.submit();
+                    // formElement.submit();
                 }
             }
         }
